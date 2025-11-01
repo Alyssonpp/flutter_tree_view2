@@ -150,7 +150,7 @@ class _DragAndDropTreeViewState extends State<DragAndDropTreeView> {
       TargetPlatform.linux ||
       TargetPlatform.macOS ||
       TargetPlatform.windows =>
-        null,
+      Durations.long2,
     };
   }
 
@@ -264,6 +264,9 @@ class TreeTile extends StatelessWidget {
       padding: const EdgeInsetsDirectional.only(end: 8),
       child: Row(
         children: [
+          TreeDragHandle(
+            child: const Icon(Icons.drag_handle)
+          ),
           FolderButton(
             isOpen: entry.node.isLeaf ? null : entry.isExpanded,
             onPressed: onFolderPressed,

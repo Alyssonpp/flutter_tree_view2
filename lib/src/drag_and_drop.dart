@@ -1,7 +1,25 @@
 import 'dart:async' show Timer;
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart';
+import 'package:flutter/material.dart'
+    hide Draggable,
+    LongPressDraggable,
+    DragTarget,
+    DragAnchorStrategy,
+    DragTargetDetails,
+    pointerDragAnchorStrategy,
+    childDragAnchorStrategy,
+    DragUpdateCallback,
+    DraggableCanceledCallback,
+    DragEndCallback,
+    DraggableDetails,
+    DragTargetWillAcceptWithDetails, 
+    DragTargetWillAccept,
+    DragTargetAccept,
+    DragTargetAcceptWithDetails,
+    DragTargetLeave,
+    DragTargetMove;
+import 'package:flutter_fancy_tree_view2/src/drag_target.dart';
 
 import 'sliver_tree.dart';
 import 'tree_controller.dart';
@@ -843,3 +861,31 @@ class _TreeDragTargetState<T extends Object> extends State<TreeDragTarget<T>> {
     );
   }
 }
+
+/// Wraps the provided [child] to make it a drag handle that triggers the
+/// drag immediately, the same way a regular [Draggable] would
+class TreeDragHandle extends StatelessWidget {
+  /// Creates a [TreeDragHandle].
+  const TreeDragHandle({
+    super.key,
+    required this.child,
+    this.cursor = SystemMouseCursors.grab,
+  });
+
+  /// The widget that should function as a handle for dragging.
+  final Widget child;
+
+  /// The cursor that should be use when the user hovers over the handle.
+  /// Defaults to [SystemMouseCursors.grab].
+  final MouseCursor cursor;
+  @override
+  Widget build(BuildContext context) {
+    return DraggableSource(
+      child: MouseRegion(
+          cursor: cursor,
+          child: child
+      )
+    );
+  }
+}
+
