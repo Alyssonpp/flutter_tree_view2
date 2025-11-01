@@ -1,4 +1,7 @@
-## [1.6.2] 227-05-2025
+## [1.6.3] 01-11-2025
+- DragHandle integration. by @SeriousMonk 
+
+## [1.6.2] 27-05-2025
 - Readme updated. 
 
 ## [1.6.1] 26-05-2025
