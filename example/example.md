@@ -2,7 +2,7 @@ Please, visit the [Live Demo App](https://baumths.github.io/flutter_tree_view)
 to fiddle around with the features of this package.
 
 ```dart
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_fancy_tree_view2/flutter_fancy_tree_view2.dart';
 
 void main() => runApp(const MaterialApp(home: Scaffold(body: MyTreeView())));

@@ -10,8 +10,7 @@ T? enumByName<T extends Enum>(String? name, List<T> values) {
 enum IndentGuideType {
   blank('Blank'),
   connectingLines('Connecting Lines'),
-  scopingLines('Scoping Lines'),
-  ;
+  scopingLines('Scoping Lines');
 
   const IndentGuideType(this.title);
   final String title;
@@ -20,8 +19,7 @@ enum IndentGuideType {
 enum LineStyle {
   dashed('Dashed'),
   dotted('Dotted'),
-  solid('Solid'),
-  ;
+  solid('Solid');
 
   const LineStyle(this.title);
   final String title;

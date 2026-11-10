@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:path_drawing/path_drawing.dart';
 import 'package:provider/provider.dart';
 
@@ -81,7 +81,7 @@ class ThemeColorSelector extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MenuAnchor(
-      builder: (context, controller, __) => IconButton(
+      builder: (context, controller, _) => IconButton(
         onPressed: controller.toggle,
         tooltip: 'Theme Color',
         icon: IgnorePointer(
@@ -189,9 +189,9 @@ class IndentSlider extends StatelessWidget {
       value: context.select<SettingsController, double>(
         (controller) => controller.state.indent,
       ),
-      onChanged: (value) => context
-          .read<SettingsController>()
-          .updateIndent(value.roundToDouble()),
+      onChanged: (value) => context.read<SettingsController>().updateIndent(
+        value.roundToDouble(),
+      ),
     );
   }
 }
@@ -405,9 +405,9 @@ class TextDirectionalitySwitch extends StatelessWidget {
       title: const Text('Text Direction'),
       subtitle: Text(title),
       trailing: const Icon(Icons.swap_horiz),
-      onTap: () => context
-          .read<SettingsController>()
-          .updateTextDirection(oppositeTextDirection),
+      onTap: () => context.read<SettingsController>().updateTextDirection(
+        oppositeTextDirection,
+      ),
     );
   }
 }
@@ -455,7 +455,7 @@ class _MenuListTile<T> extends StatelessWidget {
     return MenuAnchor(
       style: const MenuStyle(alignment: AlignmentDirectional.centerEnd),
       alignmentOffset: const Offset(2, 0),
-      builder: (_, controller, __) {
+      builder: (_, controller, _) {
         final (selectedTitle, _) = contentBuilder(selected);
         return ListTile(
           onTap: controller.toggle,
@@ -464,14 +464,16 @@ class _MenuListTile<T> extends StatelessWidget {
           trailing: const Icon(Icons.chevron_right),
         );
       },
-      menuChildren: options.map((option) {
-        final (title, icon) = contentBuilder(option);
-        return MenuItemButton(
-          onPressed: option == selected ? null : () => onSelect(option),
-          leadingIcon: icon,
-          child: Text(title),
-        );
-      }).toList(growable: false),
+      menuChildren: options
+          .map((option) {
+            final (title, icon) = contentBuilder(option);
+            return MenuItemButton(
+              onPressed: option == selected ? null : () => onSelect(option),
+              leadingIcon: icon,
+              child: Text(title),
+            );
+          })
+          .toList(growable: false),
     );
   }
 }

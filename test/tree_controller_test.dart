@@ -34,38 +34,38 @@ class TestTree {
   static const String root = '0';
 
   TestTree.depthFirst()
-      : flatTree = List<String>.unmodifiable([
-          '1',
-          '1.1',
-          '1.1.1',
-          '1.1.2',
-          '1.2',
-          '1.2.1',
-          '1.2.2',
-          '2',
-          '2.1',
-          '2.1.1',
-          '2.1.1.1',
-          '2.1.1.1.1',
-          '3',
-        ]);
+    : flatTree = List<String>.unmodifiable([
+        '1',
+        '1.1',
+        '1.1.1',
+        '1.1.2',
+        '1.2',
+        '1.2.1',
+        '1.2.2',
+        '2',
+        '2.1',
+        '2.1.1',
+        '2.1.1.1',
+        '2.1.1.1.1',
+        '3',
+      ]);
 
   TestTree.breadthFirst()
-      : flatTree = List<String>.unmodifiable([
-          '1',
-          '2',
-          '3',
-          '1.1',
-          '1.2',
-          '2.1',
-          '1.1.1',
-          '1.1.2',
-          '1.2.1',
-          '1.2.2',
-          '2.1.1',
-          '2.1.1.1',
-          '2.1.1.1.1',
-        ]);
+    : flatTree = List<String>.unmodifiable([
+        '1',
+        '2',
+        '3',
+        '1.1',
+        '1.2',
+        '2.1',
+        '1.1.1',
+        '1.1.2',
+        '1.2.1',
+        '1.2.2',
+        '2.1.1',
+        '2.1.1.1',
+        '2.1.1.1.1',
+      ]);
 
   final childrenOf = Map<String, List<String>>.unmodifiable({
     root: ['1', '2', '3'],
@@ -192,34 +192,31 @@ void main() {
       expect(controller.notifyListenersCallCount, equals(0));
     });
 
-    group(
-      'setExpansionState() does not update the expansion state if called twice with the same values',
-      () {
-        test('when defaultExpansionState is set to false', () {
-          final controller = TestTreeController(defaultExpansionState: false);
+    group('setExpansionState() does not update the expansion state if called twice with the same values', () {
+      test('when defaultExpansionState is set to false', () {
+        final controller = TestTreeController(defaultExpansionState: false);
 
-          for (int node = 0; node < 10; ++node) {
-            expect(controller.getExpansionState(node), isFalse);
-            controller.setExpansionState(node, true);
-            expect(controller.getExpansionState(node), isTrue);
-            controller.setExpansionState(node, true);
-            expect(controller.getExpansionState(node), isTrue);
-          }
-        });
+        for (int node = 0; node < 10; ++node) {
+          expect(controller.getExpansionState(node), isFalse);
+          controller.setExpansionState(node, true);
+          expect(controller.getExpansionState(node), isTrue);
+          controller.setExpansionState(node, true);
+          expect(controller.getExpansionState(node), isTrue);
+        }
+      });
 
-        test('when defaultExpansionState is set to true', () {
-          final controller = TestTreeController(defaultExpansionState: true);
+      test('when defaultExpansionState is set to true', () {
+        final controller = TestTreeController(defaultExpansionState: true);
 
-          for (int node = 0; node < 10; ++node) {
-            expect(controller.getExpansionState(node), isTrue);
-            controller.setExpansionState(node, false);
-            expect(controller.getExpansionState(node), isFalse);
-            controller.setExpansionState(node, false);
-            expect(controller.getExpansionState(node), isFalse);
-          }
-        });
-      },
-    );
+        for (int node = 0; node < 10; ++node) {
+          expect(controller.getExpansionState(node), isTrue);
+          controller.setExpansionState(node, false);
+          expect(controller.getExpansionState(node), isFalse);
+          controller.setExpansionState(node, false);
+          expect(controller.getExpansionState(node), isFalse);
+        }
+      });
+    });
 
     group('getExpansionState() returns the correct value for a given node', () {
       test('when defaultExpansionState is set to false', () {
@@ -402,15 +399,19 @@ void main() {
         childrenProvider: tree.childrenProvider,
       );
 
-      controller.breadthFirstSearch(onTraverse: (String node) {
-        expect(controller.getExpansionState(node), isFalse);
-      });
+      controller.breadthFirstSearch(
+        onTraverse: (String node) {
+          expect(controller.getExpansionState(node), isFalse);
+        },
+      );
 
       controller.expandAll();
 
-      controller.breadthFirstSearch(onTraverse: (String node) {
-        expect(controller.getExpansionState(node), isTrue);
-      });
+      controller.breadthFirstSearch(
+        onTraverse: (String node) {
+          expect(controller.getExpansionState(node), isTrue);
+        },
+      );
     });
 
     test('collapseAll() properly collapses every node', () {
@@ -420,15 +421,19 @@ void main() {
         childrenProvider: tree.childrenProvider,
       )..expandAll();
 
-      controller.breadthFirstSearch(onTraverse: (String node) {
-        expect(controller.getExpansionState(node), isTrue);
-      });
+      controller.breadthFirstSearch(
+        onTraverse: (String node) {
+          expect(controller.getExpansionState(node), isTrue);
+        },
+      );
 
       controller.collapseAll();
 
-      controller.breadthFirstSearch(onTraverse: (String node) {
-        expect(controller.getExpansionState(node), isFalse);
-      });
+      controller.breadthFirstSearch(
+        onTraverse: (String node) {
+          expect(controller.getExpansionState(node), isFalse);
+        },
+      );
     });
 
     group('expandAncestors()', () {
@@ -536,7 +541,8 @@ void main() {
         expect(
           controller.isTreeExpanded,
           isFalse,
-          reason: 'All root nodes have been expanded, but there are still '
+          reason:
+              'All root nodes have been expanded, but there are still '
               'some collapsed nodes in the subtree of node "1"',
         );
 
@@ -568,7 +574,8 @@ void main() {
         expect(
           controller.isTreeCollapsed,
           isFalse,
-          reason: 'All root nodes have been collapsed, but there are still '
+          reason:
+              'All root nodes have been collapsed, but there are still '
               'some expanded nodes in the subtree of node "1"',
         );
 
@@ -631,10 +638,8 @@ void main() {
       test('throws an AssertionError when parentProvider is not defined`', () {
         final controller = tree.createController(includeParentProvider: false);
         expect(
-          () => controller.checkNodeHasAncestor(
-            node: '',
-            potentialAncestor: '',
-          ),
+          () =>
+              controller.checkNodeHasAncestor(node: '', potentialAncestor: ''),
           throwsAssertionError,
         );
       });
@@ -790,20 +795,17 @@ void main() {
         expect(result, isEmpty);
       });
 
-      test(
-        'does not call descendCondition for the node matched by returnCondition',
-        () {
-          const target = '2.1';
+      test('does not call descendCondition for the node matched by returnCondition', () {
+        const target = '2.1';
 
-          controller.breadthFirstSearch(
-            returnCondition: (String node) => node == target,
-            descendCondition: (String node) {
-              expect(node, isNot(equals(target)));
-              return true;
-            },
-          );
-        },
-      );
+        controller.breadthFirstSearch(
+          returnCondition: (String node) => node == target,
+          descendCondition: (String node) {
+            expect(node, isNot(equals(target)));
+            return true;
+          },
+        );
+      });
 
       test('respects returnCondition', () {
         final visitedNodes = <String>[];
@@ -1106,7 +1108,7 @@ void main() {
             '2.1',
             '1.2.1',
             '1.2.2',
-            '3'
+            '3',
           ];
           int visitedNodesCount = 0;
 

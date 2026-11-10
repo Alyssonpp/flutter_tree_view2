@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_fancy_tree_view2/flutter_fancy_tree_view2.dart';
 import 'package:path_drawing/path_drawing.dart';
 import 'package:provider/provider.dart';
@@ -15,7 +15,7 @@ const selectedExampleKey = 'fftv.selectedExample';
 
 class SelectedExampleNotifier extends ValueNotifier<Example> {
   SelectedExampleNotifier(this.prefs)
-      : super(Example.byName(prefs.getString(selectedExampleKey)));
+    : super(Example.byName(prefs.getString(selectedExampleKey)));
 
   final SharedPreferences prefs;
 
@@ -36,8 +36,7 @@ enum Example {
   dragAndDrop('Drag and Drop', Icon(Icons.move_down_rounded)),
   filterable('Filterable', Icon(Icons.manage_search_rounded)),
   lazyLoading('Lazy Loading', Icon(Icons.hourglass_top_rounded)),
-  minimal('Minimal', Icon(Icons.segment)),
-  ;
+  minimal('Minimal', Icon(Icons.segment));
 
   const Example(this.title, this.icon);
   final String title;
@@ -107,24 +106,21 @@ class TreeIndentGuideScope extends StatelessWidget {
         break;
     }
 
-    return DefaultIndentGuide(
-      guide: guide,
-      child: child,
-    );
+    return DefaultIndentGuide(guide: guide, child: child);
   }
 
   Path Function(Path)? getPathModifierFor(LineStyle lineStyle) {
     return switch (lineStyle) {
       LineStyle.dashed => (Path path) => dashPath(
-            path,
-            dashArray: CircularIntervalList(const [6, 4]),
-            dashOffset: const DashOffset.absolute(6 / 4),
-          ),
+        path,
+        dashArray: CircularIntervalList(const [6, 4]),
+        dashOffset: const DashOffset.absolute(6 / 4),
+      ),
       LineStyle.dotted => (Path path) => dashPath(
-            path,
-            dashArray: CircularIntervalList(const [0.5, 3.5]),
-            dashOffset: const DashOffset.absolute(0.5 * 3.5),
-          ),
+        path,
+        dashArray: CircularIntervalList(const [0.5, 3.5]),
+        dashOffset: const DashOffset.absolute(0.5 * 3.5),
+      ),
       LineStyle.solid => null,
     };
   }

@@ -1,3 +1,11 @@
+## [2.0.0] 10-11-2026
+- **Breaking:** migrate the library and examples to `material_ui` 1.11.0.
+- Require Flutter 3.47.0 or newer and Dart 3.13.0 or newer.
+- Applications must import `package:material_ui/material_ui.dart` for Material
+  widgets, themes, and types passed to this package.
+- Update example dependencies to the latest stable releases: `provider` 6.1.5+1,
+  `shared_preferences` 2.5.6, and `flutter_lints` 6.0.0.
+
 ## [1.6.3] 01-11-2025
 - DragHandle integration. by @SeriousMonk 
 

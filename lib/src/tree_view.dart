@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'sliver_animated_tree.dart';
 import 'sliver_tree.dart';
@@ -49,7 +49,8 @@ class TreeView<T extends Object> extends BoxScrollView {
     super.primary,
     super.physics,
     super.shrinkWrap,
-    super.cacheExtent,
+    @Deprecated('Use scrollCacheExtent instead.') super.cacheExtent,
+    super.scrollCacheExtent,
     super.semanticChildCount,
     super.dragStartBehavior,
     super.keyboardDismissBehavior,
@@ -65,10 +66,7 @@ class TreeView<T extends Object> extends BoxScrollView {
 
   @override
   Widget buildChildLayout(BuildContext context) {
-    return SliverTree<T>(
-      controller: treeController,
-      nodeBuilder: nodeBuilder,
-    );
+    return SliverTree<T>(controller: treeController, nodeBuilder: nodeBuilder);
   }
 }
 
@@ -118,7 +116,8 @@ class AnimatedTreeView<T extends Object> extends TreeView<T> {
     super.primary,
     super.physics,
     super.shrinkWrap,
-    super.cacheExtent,
+    @Deprecated('Use scrollCacheExtent instead.') super.cacheExtent,
+    super.scrollCacheExtent,
     super.semanticChildCount,
     super.dragStartBehavior,
     super.keyboardDismissBehavior,

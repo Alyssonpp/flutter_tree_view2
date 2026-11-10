@@ -1,6 +1,6 @@
 import 'dart:math' as math show min;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'tree_controller.dart' show TreeEntry;
 
@@ -104,8 +104,8 @@ class DefaultIndentGuide extends InheritedTheme {
   /// IndentGuide guide = DefaultIndentGuide.of(context);
   /// ```
   static IndentGuide of(BuildContext context) {
-    final DefaultIndentGuide? instance =
-        context.dependOnInheritedWidgetOfExactType<DefaultIndentGuide>();
+    final DefaultIndentGuide? instance = context
+        .dependOnInheritedWidgetOfExactType<DefaultIndentGuide>();
 
     return instance?.guide ?? const ConnectingLinesGuide();
   }
@@ -137,8 +137,8 @@ class IndentGuide {
     this.indent = 40.0,
     this.padding = EdgeInsets.zero,
     this.maxLevel = largestPositiveInteger,
-  })  : assert(indent >= 0.0),
-        assert(maxLevel >= 0);
+  }) : assert(indent >= 0.0),
+       assert(maxLevel >= 0);
 
   /// Convenient constructor to create a [ConnectingLinesGuide].
   const factory IndentGuide.connectingLines({
@@ -204,9 +204,11 @@ class IndentGuide {
   /// * [AbstractLineGuide], an interface for working with line painting;
   Widget wrap(BuildContext context, Widget child, TreeEntry<Object> entry) {
     return Padding(
-      padding: padding.add(EdgeInsetsDirectional.only(
-        start: _constrainLevel(entry.level) * indent,
-      )),
+      padding: padding.add(
+        EdgeInsetsDirectional.only(
+          start: _constrainLevel(entry.level) * indent,
+        ),
+      ),
       child: child,
     );
   }
@@ -262,12 +264,12 @@ abstract class AbstractLineGuide extends IndentGuide {
     this.strokeCap = StrokeCap.butt,
     this.strokeJoin = StrokeJoin.miter,
     this.pathModifier,
-  })  : assert(thickness >= 0.0),
-        assert(
-          0.0 <= origin && origin <= 1.0,
-          '`origin` must be a value between `0.0` and `1.0`.',
-        ),
-        originOffset = indent - (indent * origin);
+  }) : assert(thickness >= 0.0),
+       assert(
+         0.0 <= origin && origin <= 1.0,
+         '`origin` must be a value between `0.0` and `1.0`.',
+       ),
+       originOffset = indent - (indent * origin);
 
   /// The color to use when painting the lines on the canvas.
   ///
@@ -371,10 +373,7 @@ abstract class AbstractLineGuide extends IndentGuide {
   }
 
   void _drawPath(Canvas canvas, Path path) {
-    canvas.drawPath(
-      pathModifier?.call(path) ?? path,
-      createPaint(),
-    );
+    canvas.drawPath(pathModifier?.call(path) ?? path, createPaint());
   }
 }
 
@@ -435,16 +434,16 @@ class ScopingLinesGuide extends AbstractLineGuide {
 
   @override
   int get hashCode => Object.hash(
-        indent,
-        padding,
-        maxLevel,
-        color,
-        thickness,
-        origin,
-        strokeCap,
-        strokeJoin,
-        pathModifier,
-      );
+    indent,
+    padding,
+    maxLevel,
+    color,
+    thickness,
+    origin,
+    strokeCap,
+    strokeJoin,
+    pathModifier,
+  );
 
   @override
   bool operator ==(Object other) {
@@ -585,18 +584,18 @@ class ConnectingLinesGuide extends AbstractLineGuide {
 
   @override
   int get hashCode => Object.hash(
-        indent,
-        padding,
-        maxLevel,
-        color,
-        thickness,
-        origin,
-        strokeCap,
-        strokeJoin,
-        pathModifier,
-        roundCorners,
-        connectBranches,
-      );
+    indent,
+    padding,
+    maxLevel,
+    color,
+    thickness,
+    origin,
+    strokeCap,
+    strokeJoin,
+    pathModifier,
+    roundCorners,
+    connectBranches,
+  );
 
   @override
   bool operator ==(Object other) {

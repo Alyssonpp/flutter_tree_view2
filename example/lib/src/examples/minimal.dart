@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_fancy_tree_view2/flutter_fancy_tree_view2.dart';
 
 import '../shared.dart' show watchAnimationDurationSetting;
@@ -60,9 +60,7 @@ class _MinimalTreeViewState extends State<MinimalTreeView> {
                 )
               else
                 const SizedBox(height: 40, width: 8),
-              Flexible(
-                child: Text(entry.node.title),
-              ),
+              Flexible(child: Text(entry.node.title)),
             ],
           ),
         );

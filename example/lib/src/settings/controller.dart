@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 import '../shared.dart' show IndentGuideType, LineStyle, enumByName;
@@ -25,13 +25,17 @@ class SettingsState {
       connectBranches: prefs.getBool(connectBranchesKey),
       indent: prefs.getDouble(indentKey),
       indentGuideType: enumByName(
-          prefs.getString(indentGuideTypeKey), IndentGuideType.values),
+        prefs.getString(indentGuideTypeKey),
+        IndentGuideType.values,
+      ),
       lineOrigin: prefs.getDouble(lineOriginKey),
       lineStyle: enumByName(prefs.getString(lineStyleKey), LineStyle.values),
       lineThickness: prefs.getDouble(lineThicknessKey),
       roundedCorners: prefs.getBool(roundedCornersKey),
-      textDirection:
-          enumByName(prefs.getString(textDirectionKey), TextDirection.values),
+      textDirection: enumByName(
+        prefs.getString(textDirectionKey),
+        TextDirection.values,
+      ),
       themeMode: enumByName(prefs.getString(themeModeKey), ThemeMode.values),
     );
   }
@@ -79,7 +83,7 @@ class SettingsState {
 
 class SettingsController with ChangeNotifier {
   SettingsController(this.prefs)
-      : _state = SettingsState.fromPreferences(prefs);
+    : _state = SettingsState.fromPreferences(prefs);
 
   final SharedPreferences prefs;
 

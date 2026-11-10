@@ -1,24 +1,25 @@
 import 'dart:async' show Timer;
 
 import 'package:flutter/foundation.dart';
-import 'package:flutter/material.dart'
-    hide Draggable,
-    LongPressDraggable,
-    DragTarget,
-    DragAnchorStrategy,
-    DragTargetDetails,
-    pointerDragAnchorStrategy,
-    childDragAnchorStrategy,
-    DragUpdateCallback,
-    DraggableCanceledCallback,
-    DragEndCallback,
-    DraggableDetails,
-    DragTargetWillAcceptWithDetails, 
-    DragTargetWillAccept,
-    DragTargetAccept,
-    DragTargetAcceptWithDetails,
-    DragTargetLeave,
-    DragTargetMove;
+import 'package:material_ui/material_ui.dart'
+    hide
+        Draggable,
+        LongPressDraggable,
+        DragTarget,
+        DragAnchorStrategy,
+        DragTargetDetails,
+        pointerDragAnchorStrategy,
+        childDragAnchorStrategy,
+        DragUpdateCallback,
+        DraggableCanceledCallback,
+        DragEndCallback,
+        DraggableDetails,
+        DragTargetWillAcceptWithDetails,
+        DragTargetWillAccept,
+        DragTargetAccept,
+        DragTargetAcceptWithDetails,
+        DragTargetLeave,
+        DragTargetMove;
 import 'package:flutter_fancy_tree_view2/src/drag_target.dart';
 
 import 'sliver_tree.dart';
@@ -604,9 +605,9 @@ class TreeDragTarget<T extends Object> extends StatefulWidget {
     this.onMove,
     this.hitTestBehavior = HitTestBehavior.translucent,
   }) : assert(
-          onWillAccept == null || onWillAcceptWithDetails == null,
-          "Don't pass both onWillAccept and onWillAcceptWithDetails.",
-        );
+         onWillAccept == null || onWillAcceptWithDetails == null,
+         "Don't pass both onWillAccept and onWillAcceptWithDetails.",
+       );
 
   /// The tree node that is going to receive the drop of a [TreeDraggable].
   final T node;
@@ -848,16 +849,17 @@ class _TreeDragTargetState<T extends Object> extends State<TreeDragTarget<T>> {
       onLeave: _onLeave,
       onMove: _onMove,
       hitTestBehavior: widget.hitTestBehavior,
-      builder: (
-        BuildContext context,
-        List<T?> candidateData,
-        List<dynamic> rejectedData,
-      ) {
-        return widget.builder(
-          context,
-          _details?._applyData(candidateData, rejectedData),
-        );
-      },
+      builder:
+          (
+            BuildContext context,
+            List<T?> candidateData,
+            List<dynamic> rejectedData,
+          ) {
+            return widget.builder(
+              context,
+              _details?._applyData(candidateData, rejectedData),
+            );
+          },
     );
   }
 }
@@ -881,11 +883,7 @@ class TreeDragHandle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return DraggableSource(
-      child: MouseRegion(
-          cursor: cursor,
-          child: child
-      )
+      child: MouseRegion(cursor: cursor, child: child),
     );
   }
 }
-

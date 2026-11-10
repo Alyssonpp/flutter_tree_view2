@@ -60,6 +60,28 @@ Please, treat version `1.0` as a whole new package. Migrating from previous
 versions is discouraged as the package went through a major rewrite and has
 many breaking changes.
 
+## Requirements and migration to 2.0
+
+Requires Flutter 3.47.0 or newer and Dart 3.13.0 or newer. Version 2.0 uses
+the official standalone [material_ui](https://pub.dev/packages/material_ui)
+package instead of Flutter's bundled Material library.
+
+Applications using Material widgets with this package should add
+`material_ui: ^1.11.0` to their dependencies and replace
+`package:flutter/material.dart` imports with
+`package:material_ui/material_ui.dart`:
+
+```dart
+import 'package:flutter_fancy_tree_view2/flutter_fancy_tree_view2.dart';
+import 'package:material_ui/material_ui.dart';
+```
+
+Material types from the two libraries are distinct. Use the standalone library
+for themes, buttons, and other Material values passed to this package. For
+dependencies that still use the bundled Material library, see Flutter's
+[migration guide](https://docs.flutter.dev/release/breaking-changes/material-ui-and-cupertino-ui)
+for compatibility bridge guidance and its limitations.
+
 ## Features
 
 * Dynamic "Tree Node" Modeling

@@ -1,6 +1,6 @@
 import 'dart:math' show Random;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_fancy_tree_view2/flutter_fancy_tree_view2.dart';
 
 import '../shared.dart' show watchAnimationDurationSetting;
@@ -8,9 +8,7 @@ import '../shared.dart' show watchAnimationDurationSetting;
 class Data {
   static const Data root = Data._root();
 
-  const Data._root()
-      : id = 0,
-        title = '/';
+  const Data._root() : id = 0, title = '/';
 
   static int _uniqueId = 1;
   Data(this.title) : id = _uniqueId++;
@@ -118,10 +116,7 @@ class _LazyLoadingTreeViewState extends State<LazyLoadingTreeView> {
           entry: entry,
           child: Row(
             children: [
-              SizedBox.square(
-                dimension: 40,
-                child: getLeadingFor(entry.node),
-              ),
+              SizedBox.square(dimension: 40, child: getLeadingFor(entry.node)),
               Text(entry.node.title),
             ],
           ),

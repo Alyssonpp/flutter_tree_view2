@@ -1,14 +1,12 @@
 import 'package:faker/faker.dart' hide Color;
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_fancy_tree_view2/flutter_fancy_tree_view2.dart';
 
 import '../shared.dart' show watchAnimationDurationSetting;
 
 class Node {
-  Node({
-    required this.title,
-    Iterable<Node>? children,
-  }) : children = <Node>[...?children];
+  Node({required this.title, Iterable<Node>? children})
+    : children = <Node>[...?children];
 
   final String title;
   final List<Node> children;
@@ -123,10 +121,7 @@ class _FilterableTreeViewState extends State<FilterableTreeView> {
                   '${filter?.totalMatchCount}/${filter?.totalNodeCount}',
                 ),
               ),
-              IconButton(
-                icon: const Icon(Icons.clear),
-                onPressed: clearSearch,
-              )
+              IconButton(icon: const Icon(Icons.clear), onPressed: clearSearch),
             ],
           ),
         ),
@@ -182,15 +177,14 @@ class _TreeTileState extends State<TreeTile> {
           ExpandIcon(
             key: GlobalObjectKey(widget.entry.node),
             isExpanded: widget.entry.isExpanded,
-            onPressed: (_) => TreeViewScope.of<Node>(context)
-              ..controller.toggleExpansion(widget.entry.node),
+            onPressed: (_) =>
+                TreeViewScope.of<Node>(context)
+                  ..controller.toggleExpansion(widget.entry.node),
           ),
           if (shouldShowBadge)
             Padding(
               padding: const EdgeInsetsDirectional.only(end: 8),
-              child: Badge(
-                label: Text('${widget.match?.subtreeMatchCount}'),
-              ),
+              child: Badge(label: Text('${widget.match?.subtreeMatchCount}')),
             ),
           Flexible(child: Text.rich(titleSpan)),
         ],

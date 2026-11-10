@@ -1,6 +1,6 @@
 import 'dart:math' show Random;
 
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:flutter_fancy_tree_view2/flutter_fancy_tree_view2.dart';
 
 import '../shared.dart' show watchAnimationDurationSetting;
@@ -8,10 +8,7 @@ import '../shared.dart' show watchAnimationDurationSetting;
 //! Disclaimer: This example is very opinionated, it may not work for your usecase.
 
 class Node {
-  Node({
-    required this.id,
-    Iterable<Node>? children,
-  }) : _children = <Node>[] {
+  Node({required this.id, Iterable<Node>? children}) : _children = <Node>[] {
     if (children == null) return;
 
     for (final Node child in children) {
@@ -145,12 +142,10 @@ class _DragAndDropTreeViewState extends State<DragAndDropTreeView> {
     longPressDelay = switch (Theme.of(context).platform) {
       TargetPlatform.android ||
       TargetPlatform.fuchsia ||
-      TargetPlatform.iOS =>
-        Durations.long2,
+      TargetPlatform.iOS => Durations.long2,
       TargetPlatform.linux ||
       TargetPlatform.macOS ||
-      TargetPlatform.windows =>
-      Durations.long2,
+      TargetPlatform.windows => Durations.long2,
     };
   }
 
@@ -219,9 +214,7 @@ class DragAndDropTreeTile extends StatelessWidget {
           longPressDelay: longPressDelay,
           childWhenDragging: Opacity(
             opacity: .5,
-            child: IgnorePointer(
-              child: TreeTile(entry: entry),
-            ),
+            child: IgnorePointer(child: TreeTile(entry: entry)),
           ),
           feedback: IntrinsicWidth(
             child: Material(
@@ -264,32 +257,22 @@ class TreeTile extends StatelessWidget {
       padding: const EdgeInsetsDirectional.only(end: 8),
       child: Row(
         children: [
-          TreeDragHandle(
-            child: const Icon(Icons.drag_handle)
-          ),
+          TreeDragHandle(child: const Icon(Icons.drag_handle)),
           FolderButton(
             isOpen: entry.node.isLeaf ? null : entry.isExpanded,
             onPressed: onFolderPressed,
           ),
-          Expanded(
-            child: Text('Node ${entry.node.id}'),
-          ),
+          Expanded(child: Text('Node ${entry.node.id}')),
         ],
       ),
     );
 
     if (decoration != null) {
-      content = DecoratedBox(
-        decoration: decoration!,
-        child: content,
-      );
+      content = DecoratedBox(decoration: decoration!, child: content);
     }
 
     if (showIndentation) {
-      return TreeIndentation(
-        entry: entry,
-        child: content,
-      );
+      return TreeIndentation(entry: entry, child: content);
     }
 
     return content;

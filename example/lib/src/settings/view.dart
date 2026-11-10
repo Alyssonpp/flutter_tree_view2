@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 
 import 'categories.dart';
 
@@ -24,10 +24,7 @@ class SettingsView extends StatelessWidget {
     return Material(
       child: SizedBox(
         width: 304,
-        child: ListTileTheme.merge(
-          style: ListTileStyle.drawer,
-          child: child,
-        ),
+        child: ListTileTheme.merge(style: ListTileStyle.drawer, child: child),
       ),
     );
   }

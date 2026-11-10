@@ -1,4 +1,4 @@
-import 'package:flutter/material.dart';
+import 'package:material_ui/material_ui.dart';
 import 'package:provider/provider.dart';
 
 import 'settings/controller.dart';
@@ -26,10 +26,8 @@ class App extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final (themeColor, themeMode) = context.select(
-      (SettingsController controller) => (
-        controller.state.color,
-        controller.state.themeMode,
-      ),
+      (SettingsController controller) =>
+          (controller.state.color, controller.state.themeMode),
     );
 
     return MaterialApp(
@@ -86,10 +84,6 @@ class AppView extends StatelessWidget {
       drawer = const SettingsView(isDrawer: true);
     }
 
-    return Scaffold(
-      appBar: appBar,
-      body: body,
-      drawer: drawer,
-    );
+    return Scaffold(appBar: appBar, body: body, drawer: drawer);
   }
 }

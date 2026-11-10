@@ -97,11 +97,11 @@ class TreeController<T extends Object> with ChangeNotifier {
   /// [TreeController.parentProvider] is set to a callback that always returns
   /// null.
   TreeController({
-    required Iterable<T> roots,
+    required this._roots,
     required this.childrenProvider,
     ParentProvider<T>? parentProvider,
     this.defaultExpansionState = false,
-  }) : _roots = roots {
+  }) {
     assert(() {
       _debugHasParentProvider = parentProvider != null;
       return true;
@@ -729,11 +729,8 @@ class TreeSearchMatch with Diagnosticable {
   }
 
   @override
-  int get hashCode => Object.hash(
-        isDirectMatch,
-        subtreeNodeCount,
-        subtreeMatchCount,
-      );
+  int get hashCode =>
+      Object.hash(isDirectMatch, subtreeNodeCount, subtreeMatchCount);
 
   @override
   bool operator ==(Object other) {
@@ -764,8 +761,8 @@ class TreeEntry<T extends Object> with Diagnosticable {
     required this.level,
     required this.isExpanded,
     required this.hasChildren,
-    bool hasNextSibling = true,
-  }) : _hasNextSibling = hasNextSibling;
+    this._hasNextSibling = true,
+  });
 
   /// The direct parent of [node] on the tree, which was collected during
   /// traversal.
